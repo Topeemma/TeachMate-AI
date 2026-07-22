@@ -31,6 +31,7 @@ export const apiRouter = Router();
 
 // Configure multer for file uploads in memory
 const upload = multer({
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
@@ -145,7 +146,7 @@ apiRouter.post('/uploads', (req: Request, res: Response, next) => {
         ? '⚠️ Photo upload detected. Please ensure no pupil face or personally identifiable information is included without parental consent.'
         : undefined,
       extractedSummary: `Parsed ${file.originalname} (${(file.size / 1024).toFixed(1)} KB) — Ready for NERDC alignment.`,
-      rawText: file.buffer.toString('utf-8').slice(0, 3000),
+      rawText: file.buffer ? file.buffer.toString('utf-8').slice(0, 3000) : '',
     };
 
     repository.saveUpload(uploadRecord);

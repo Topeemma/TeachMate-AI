@@ -28,7 +28,7 @@ export const LandingPage: React.FC<Props> = ({ onStartLesson, onSelectDemo }) =>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
-            Orchestrate 8 specialist AI agents to instantly generate comprehensive 5-step lesson notes, PowerPoint slide decks, 15-second animated topic videos, 2-voice audio podcasts, and Google Classroom resources.
+            Orchestrate 10 specialist AI agents to instantly generate comprehensive 5-step lesson notes, PowerPoint slide decks, 15-second animated topic videos, 2-voice audio podcasts, and Google Classroom resources.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -53,7 +53,7 @@ export const LandingPage: React.FC<Props> = ({ onStartLesson, onSelectDemo }) =>
           {/* Quick Stats bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-800/80 text-xs text-slate-300">
             <div>
-              <span className="block text-lg font-black text-white">20</span>
+              <span className="block text-lg font-black text-white">10</span>
               <span>Specialist Agents</span>
             </div>
             <div>

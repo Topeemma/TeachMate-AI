@@ -67,31 +67,21 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
     `idemp-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`
   );
 
-  // 20 Specialist Agents Progress State
+  // 10 Specialist Agents Progress State
   const [agentProgress, setAgentProgress] = useState<number>(0);
   const [currentAgentIndex, setCurrentAgentIndex] = useState<number>(0);
 
   const specialistAgents = [
-    'Curriculum Retrieval Agent (NERDC)',
-    'NERDC Benchmark Verification Agent',
-    'Behavioral Objectives Architect',
-    '5-Step Lesson Plan Synthesizer',
-    'Teacher Pedagogical Notes Specialist',
-    'Misconception & Correction Generator',
-    'Nigerian Local Analogy Agent',
+    'Curriculum Retrieval & Alignment Agent',
+    '5-Step Lesson Notes Planner',
+    'Teacher Pedagogy Specialist',
+    'Student Notes Summarizer',
+    'Active Group Activity Designer',
     'Assessment Quiz Compiler',
-    'Evaluation Rubric Designer',
-    'Weekly Assessment Worksheet Generator',
-    'Slide Deck Content Director',
-    'Pixverse 15s Video Animator',
-    'NotebookLM Audio Podcast Scripter',
-    'Multilingual Translation Specialist',
-    'Zero-PII Privacy & Safety Sentinel',
-    'Citation & Reference Verifier',
-    'Google Classroom Sync Agent',
-    'DOCX Formatting Specialist',
-    'PDF Layout & Styler',
-    'Master Package Assembler',
+    'Pupil Worksheet Architect',
+    'Interactive Presentation Director',
+    'Pixverse Video Animator',
+    'Audio Podcast Sound Producer',
   ];
 
   useEffect(() => {
@@ -103,7 +93,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
         setAgentProgress((prev) => {
           if (prev >= 98) return 98;
           const next = prev + 5;
-          setCurrentAgentIndex(Math.min(19, Math.floor((next / 100) * 20)));
+          setCurrentAgentIndex(Math.min(9, Math.floor((next / 100) * 10)));
           return next;
         });
       }, 250);
@@ -204,7 +194,44 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
     setIsUploading(true);
     setUploadProgress(20);
 
-    // Simulated Progress steps for smooth UX
+    // Large file advisory
+    if (file.size > 1.5 * 1024 * 1024) {
+      showToast(
+        'Large File Note',
+        'Files over 1.5MB may occasionally exceed connection limits. Try copying & pasting text directly if it fails.',
+        'warning'
+      );
+    }
+
+    // 100% Client-side processing for TXT files
+    if (file.name.toLowerCase().endsWith('.txt')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = (e.target?.result as string) || '';
+        setRawEvidenceText(text);
+        setUploadProgress(100);
+        const simulatedRes = {
+          uploadId: `upl-local-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+          originalName: file.name,
+          sanitizedName: file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_'),
+          sizeBytes: file.size,
+          piiWarning: false,
+          extractedSummary: `Loaded ${file.name} directly via browser reader (${(file.size / 1024).toFixed(1)} KB) — Ready for NERDC alignment.`,
+          uploadedAt: new Date().toISOString(),
+        };
+        setUploadedFile(simulatedRes);
+        setIsUploading(false);
+        showToast('Text File Processed', `Successfully extracted text from ${file.name} locally!`, 'success');
+      };
+      reader.onerror = () => {
+        setIsUploading(false);
+        showToast('Local Read Failed', 'Could not read text file locally. Please paste content directly.', 'error');
+      };
+      reader.readAsText(file);
+      return;
+    }
+
+    // Simulated Progress steps for other files
     const timer = setInterval(() => {
       setUploadProgress((prev) => {
         if (prev >= 85) {
@@ -226,7 +253,14 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
       }
     } catch (err: any) {
       clearInterval(timer);
-      showToast('Upload Failed', err.message || 'Error processing file upload.', 'error');
+      const errText = err.message || '';
+      const isFetchError = errText.toLowerCase().includes('fetch') || errText.toLowerCase().includes('network');
+      
+      const friendlyMessage = isFetchError
+        ? 'Connection threshold reached. For reliable processing, please copy and paste your document text into the textbox below instead.'
+        : `Upload failed: ${errText}`;
+      
+      showToast('Upload Failed', friendlyMessage, 'error');
     } finally {
       setIsUploading(false);
     }
@@ -299,7 +333,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
-      {/* 20 Specialist Agents Progress Bar Indicator */}
+      {/* 10 Specialist Agents Progress Bar Indicator */}
       {isLoading && (
         <div className="bg-teal-900 text-white rounded-3xl p-6 border-2 border-teal-700 shadow-xl space-y-4">
           <div className="flex items-center justify-between">
@@ -309,13 +343,13 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               </div>
               <div>
                 <h3 className="text-base font-bold flex items-center gap-2">
-                  <span>20 Specialist Agents Orchestration Pipeline</span>
+                  <span>10 Specialist Agents Orchestration Pipeline</span>
                   <span className="text-[10px] bg-bright-orange text-white px-2 py-0.5 rounded-full uppercase tracking-wider font-black">
                     Active
                   </span>
                 </h3>
                 <p className="text-xs text-teal-200">
-                  Current Agent ({currentAgentIndex + 1}/20): <span className="font-bold text-orange-300">{specialistAgents[currentAgentIndex]}</span>
+                  Current Agent ({currentAgentIndex + 1}/10): <span className="font-bold text-orange-300">{specialistAgents[currentAgentIndex]}</span>
                 </p>
               </div>
             </div>
@@ -354,7 +388,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
       <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-sm space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
           <div>
-            <h2 className="text-xl font-bold text-deep-purple flex items-center gap-2">
+            <h2 className="text-xl font-bold text-deep-slate flex items-center gap-2">
               <span>Interactive Lesson Workspace</span>
               <span className="text-xs bg-light-orange text-bright-orange px-2.5 py-0.5 rounded-full font-bold">
                 NERDC Aligned
@@ -384,7 +418,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 setGrade('Primary 4');
                 onSelectDemo('Water Cycle');
               }}
-              className="px-3.5 py-2 bg-purple-50 hover:bg-purple-100 text-primary-purple font-bold text-xs rounded-xl border border-purple-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 bg-teal-50 hover:bg-teal-100 text-primary-teal font-bold text-xs rounded-xl border border-teal-200 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 text-bright-orange" />
               <span>Load Water Cycle Demo</span>
@@ -403,7 +437,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 id="subject-select"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value as SubjectName)}
-                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none cursor-pointer"
+                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none cursor-pointer"
               >
                 {subjects.map((s) => (
                   <option key={s} value={s}>
@@ -421,7 +455,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 id="grade-select"
                 value={grade}
                 onChange={(e) => setGrade(e.target.value as GradeLevel)}
-                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none cursor-pointer"
+                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none cursor-pointer"
               >
                 {grades.map((g) => (
                   <option key={g} value={g}>
@@ -443,7 +477,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g. The Water Cycle and Rainfall in Nigeria"
-              className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none"
+              className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none"
               required
             />
             <div className="flex flex-wrap gap-2 mt-2">
@@ -499,7 +533,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
           <div className="space-y-3">
             <label className="block text-xs font-bold text-gray-700 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Upload className="w-3.5 h-3.5 text-primary-purple" />
+                <Upload className="w-3.5 h-3.5 text-primary-teal" />
                 <span>Upload Source Document / Textbook Excerpt (PDF, DOCX, TXT, PNG, JPG)</span>
               </span>
               <span className="text-[11px] text-gray-400 font-normal">Max 10MB</span>
@@ -515,7 +549,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                   ? 'border-bright-orange bg-orange-50/50 scale-[0.99]'
                   : uploadedFile
                   ? 'border-teal-500 bg-teal-50/20'
-                  : 'border-gray-300 hover:border-primary-purple bg-gray-50/50 hover:bg-purple-50/20'
+                  : 'border-gray-300 hover:border-primary-teal bg-gray-50/50 hover:bg-teal-50/20'
               }`}
             >
               <input
@@ -528,10 +562,10 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
 
               {isUploading ? (
                 <div className="space-y-3 max-w-xs mx-auto py-2">
-                  <div className="w-10 h-10 bg-purple-100 text-primary-purple rounded-xl flex items-center justify-center mx-auto animate-bounce">
+                  <div className="w-10 h-10 bg-teal-100 text-primary-teal rounded-xl flex items-center justify-center mx-auto animate-bounce">
                     <Upload className="w-5 h-5" />
                   </div>
-                  <p className="text-xs font-bold text-deep-purple">Processing Source Document...</p>
+                  <p className="text-xs font-bold text-deep-slate">Processing Source Document...</p>
                   <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
                     <div
                       className="bg-bright-orange h-full transition-all duration-200"
@@ -576,7 +610,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 </div>
               ) : (
                 <div className="space-y-2 py-2">
-                  <div className="w-12 h-12 bg-purple-100 text-primary-purple rounded-2xl flex items-center justify-center mx-auto">
+                  <div className="w-12 h-12 bg-teal-100 text-primary-teal rounded-2xl flex items-center justify-center mx-auto">
                     <Upload className="w-6 h-6" />
                   </div>
                   <div>
@@ -615,7 +649,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               onChange={(e) => setRawEvidenceText(e.target.value)}
               rows={3}
               placeholder="Paste relevant NERDC scheme of work notes, textbook paragraphs, or syllabus guidelines..."
-              className="w-full p-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-normal text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none"
+              className="w-full p-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-normal text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none"
             />
           </div>
 
@@ -731,7 +765,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                     onClick={() => toggleOutput(item.key)}
                     className={`p-2.5 rounded-xl border text-left text-xs font-medium flex items-center gap-2 transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-primary-purple bg-purple-50 text-deep-purple font-bold'
+                        ? 'border-primary-teal bg-teal-50 text-deep-slate font-bold'
                         : 'border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300'
                     }`}
                   >
@@ -757,7 +791,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               {isLoading ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>20 Agent Studio Orchestrating Lesson Package...</span>
+                  <span>TeachMate AI Orchestrating Lesson Package...</span>
                 </>
               ) : (
                 <>

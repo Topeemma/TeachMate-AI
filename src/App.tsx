@@ -35,7 +35,7 @@ function MainAppContent() {
 
   const handleGenerateLesson = async (payload: any, idempotencyKey?: string) => {
     setIsLoading(true);
-    showToast('Agent Orchestrator Active', '20 specialist agents compiling lesson package...', 'info');
+    showToast('Agent Orchestrator Active', '10 specialist agents compiling lesson package...', 'info');
 
     try {
       const generated = await ApiClient.generatePackage(payload, idempotencyKey);
@@ -142,11 +142,11 @@ function MainAppContent() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-deep-purple text-purple-200 text-xs py-4 px-6 border-t border-purple-900 mt-auto">
+      <footer className="bg-deep-slate text-slate-300 text-xs py-4 px-6 border-t border-slate-800 mt-auto">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p>© 2026 TeachMate AI — Primary School Teacher Assistant aligned to NERDC Standards (Grades 1-6).</p>
-          <div className="flex gap-4 text-[11px] font-medium">
-            <span>20 Specialist Agents Active</span>
+          <div className="flex gap-4 text-[11px] font-medium text-slate-400">
+            <span>10 Specialist Agents Active</span>
             <span>•</span>
             <span>PII Zero-Retention Guarantee</span>
           </div>
