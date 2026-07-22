@@ -1,0 +1,6 @@
+{
+  "name": "TeachMate AI",
+  "description": "TeachMate AI — An agentic AI lesson-production studio for Nigerian primary-school teachers (Grades 1-6) aligned to NERDC curriculum standards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-deep-slate: #0F172A;
+    --color-primary-teal: #0D9488;
+    --color-emerald-accent: #059669;
+    --color-bright-orange: #F97316;
+    --color-light-orange: #FFF7ED;
+    --color-off-white: #F8FAFC;
+    --color-dark-text: #0F172A;
+  }
+
+  body {
+    background-color: var(--color-off-white);
+    color: var(--color-dark-text);
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button, a, input, select, textarea {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Custom Theme Utility Classes */
+.bg-deep-slate { background-color: #0F172A; }
+.bg-primary-teal { background-color: #0D9488; }
+.bg-emerald-accent { background-color: #059669; }
+.bg-bright-orange { background-color: #F97316; }
+.bg-light-orange { background-color: #FFF7ED; }
+.bg-off-white { background-color: #F8FAFC; }
+
+.text-deep-slate { color: #0F172A; }
+.text-primary-teal { color: #0D9488; }
+.text-emerald-accent { color: #059669; }
+.text-bright-orange { color: #F97316; }
+.text-dark-text { color: #0F172A; }
+
+.border-primary-teal { border-color: #0D9488; }
+.border-bright-orange { border-color: #F97316; }
+.border-light-orange { border-color: #FFF7ED; }
+
