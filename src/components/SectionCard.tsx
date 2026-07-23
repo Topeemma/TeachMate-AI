@@ -20,7 +20,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
   isActive,
   onClick,
   badgeText,
-  badgeBg = 'bg-teal-100 text-teal-700',
+  badgeBg = 'bg-purple-100 text-primary-purple',
 }) => {
   const isApproved = status === 'approved';
 
@@ -29,9 +29,9 @@ export const SectionCard: React.FC<SectionCardProps> = ({
       onClick={onClick}
       className={`rounded-3xl p-4 shadow-xs relative flex flex-col justify-between transition-all cursor-pointer group hover:scale-[1.02] ${
         isActive
-          ? 'bg-white border-2 border-orange-500 shadow-md ring-2 ring-orange-500/20'
+          ? 'bg-white border-2 border-bright-orange shadow-md ring-2 ring-orange-500/20'
           : isApproved
-          ? 'bg-white border-2 border-teal-500 shadow-xs'
+          ? 'bg-white border-2 border-primary-purple shadow-xs'
           : 'bg-white border border-orange-200 shadow-xs hover:border-orange-300'
       }`}
     >
@@ -41,7 +41,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
         </div>
         <span
           className={`text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider ${
-            isApproved ? 'bg-teal-500 text-white' : 'bg-orange-100 text-orange-600'
+            isApproved ? 'bg-bright-orange text-white' : 'bg-orange-100 text-bright-orange'
           }`}
         >
           {badgeText || (isApproved ? 'APPROVED' : 'REVIEW')}
@@ -49,7 +49,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
       </div>
 
       <div className="mt-3">
-        <h3 className="text-sm font-bold text-teal-950 group-hover:text-orange-600 transition-colors">
+        <h3 className="text-sm font-bold text-deep-purple group-hover:text-bright-orange transition-colors">
           {title}
         </h3>
         <p className="text-[10px] text-gray-500 mt-0.5">

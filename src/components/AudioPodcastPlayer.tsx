@@ -21,7 +21,7 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
 
   if (!audioPodcast) {
     return (
-      <div className="bg-white rounded-3xl p-5 border-2 border-teal-500 shadow-sm text-center text-gray-500 text-xs">
+      <div className="bg-white rounded-3xl p-5 border-2 border-primary-purple shadow-sm text-center text-gray-500 text-xs">
         Audio podcast section not available.
       </div>
     );
@@ -65,14 +65,14 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-3xl p-5 border-2 border-teal-500 shadow-sm flex flex-col justify-between space-y-3">
+    <div className="bg-white rounded-3xl p-5 border-2 border-primary-purple shadow-sm flex flex-col justify-between space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-green-100 text-green-700 rounded-xl flex items-center justify-center font-bold">
+          <div className="w-8 h-8 bg-purple-100 text-primary-purple rounded-xl flex items-center justify-center font-bold">
             🎧
           </div>
           <div>
-            <h3 className="text-sm font-bold text-teal-950">2-Voice Audio Podcast</h3>
+            <h3 className="text-sm font-bold text-deep-purple">2-Voice Audio Podcast</h3>
             <p className="text-[10px] text-gray-500">NotebookLM Classroom Dialogue</p>
           </div>
         </div>
@@ -80,41 +80,41 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
         <button
           onClick={() => onToggleApproval?.()}
           className={`text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider cursor-pointer ${
-            isApproved ? 'bg-teal-500 text-white' : 'bg-orange-100 text-orange-600 hover:bg-orange-200'
+            isApproved ? 'bg-bright-orange text-white' : 'bg-orange-100 text-bright-orange hover:bg-orange-200'
           }`}
         >
           {isApproved ? 'APPROVED' : 'APPROVE AUDIO'}
         </button>
       </div>
 
-      <div className="bg-teal-900 text-white rounded-2xl p-4 space-y-3 shadow-inner">
+      <div className="bg-[#3B176B] text-white rounded-2xl p-4 space-y-3 shadow-inner">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={toggleSpeechPlayback}
-              className="w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center shadow-md transition-transform hover:scale-105 cursor-pointer"
+              className="w-10 h-10 bg-bright-orange hover:bg-orange-600 text-white rounded-full flex items-center justify-center shadow-md transition-transform hover:scale-105 cursor-pointer"
             >
               {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
             </button>
             <div>
               <span className="font-bold text-xs text-white block">{audioPodcast.title}</span>
-              <span className="text-[10px] text-teal-200">AI-Generated Educational Discussion (Voice A & Voice B)</span>
+              <span className="text-[10px] text-purple-200">AI-Generated Educational Discussion (Voice A & Voice B)</span>
             </div>
           </div>
-          <Volume2 className={`w-5 h-5 ${isPlaying ? 'text-orange-400 animate-pulse' : 'text-teal-400'}`} />
+          <Volume2 className={`w-5 h-5 ${isPlaying ? 'text-bright-orange animate-pulse' : 'text-purple-300'}`} />
         </div>
 
         {/* AI Disclosure Notice */}
-        <div className="bg-teal-950/60 p-2 rounded-xl text-[10px] text-teal-300 italic border border-teal-800">
+        <div className="bg-[#201A2B] p-2 rounded-xl text-[10px] text-purple-200 italic border border-purple-800">
           Note: This is an AI-generated educational audio discussion, not a real recording.
         </div>
 
         {/* Audio Waveform Effect */}
-        <div className="flex items-center justify-center gap-1 h-8 bg-teal-950/80 rounded-xl p-2 border border-teal-800">
+        <div className="flex items-center justify-center gap-1 h-8 bg-[#201A2B] rounded-xl p-2 border border-purple-800">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className={`w-1 rounded-full bg-orange-400 transition-all duration-300 ${
+              className={`w-1 rounded-full bg-bright-orange transition-all duration-300 ${
                 isPlaying ? 'animate-bounce' : 'h-2 opacity-50'
               }`}
               style={{
@@ -125,7 +125,7 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
           ))}
         </div>
 
-        <div className="flex justify-between items-center text-[10px] text-teal-300 pt-1 flex-wrap gap-2">
+        <div className="flex justify-between items-center text-[10px] text-purple-200 pt-1 flex-wrap gap-2">
           <button
             onClick={() => setShowTranscript(!showTranscript)}
             className="flex items-center gap-1 text-orange-300 hover:underline cursor-pointer"
@@ -137,7 +137,7 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={handleDownloadMp3}
-              className="flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 rounded-lg font-bold cursor-pointer"
+              className="flex items-center gap-1 bg-bright-orange hover:bg-orange-600 text-white px-2 py-1 rounded-lg font-bold cursor-pointer"
             >
               <Download className="w-3 h-3" />
               <span>Download MP3 Audio</span>
@@ -148,17 +148,17 @@ export const AudioPodcastPlayer: React.FC<AudioPodcastPlayerProps> = ({
 
         {/* Dialogue Script Transcript Drawer */}
         {showTranscript && (
-          <div className="bg-teal-950 p-3 rounded-xl border border-teal-800 space-y-2 text-[11px] max-h-40 overflow-y-auto">
+          <div className="bg-[#201A2B] p-3 rounded-xl border border-purple-800 space-y-2 text-[11px] max-h-40 overflow-y-auto">
             {audioPodcast.dialogueScript?.map((line, idx) => (
               <div key={idx} className="space-y-0.5">
                 <span
                   className={`font-bold block text-[10px] ${
-                    line.speaker === 'Voice A (Educator)' ? 'text-orange-300' : 'text-teal-300'
+                    line.speaker === 'Voice A (Educator)' ? 'text-orange-300' : 'text-purple-300'
                   }`}
                 >
                   {line.speaker}:
                 </span>
-                <p className="text-teal-100">{line.line}</p>
+                <p className="text-purple-100">{line.line}</p>
               </div>
             ))}
           </div>

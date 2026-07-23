@@ -2,13 +2,12 @@
 
 @layer base {
   :root {
-    --color-deep-slate: #0F172A;
-    --color-primary-teal: #0D9488;
-    --color-emerald-accent: #059669;
-    --color-bright-orange: #F97316;
-    --color-light-orange: #FFF7ED;
-    --color-off-white: #F8FAFC;
-    --color-dark-text: #0F172A;
+    --color-deep-purple: #3B176B;
+    --color-primary-purple: #5B2AA8;
+    --color-bright-orange: #FF6B1A;
+    --color-light-orange: #FFF1E8;
+    --color-off-white: #F8F7FB;
+    --color-dark-text: #201A2B;
   }
 
   body {
@@ -25,21 +24,32 @@
   }
 }
 
-/* Custom Theme Utility Classes */
-.bg-deep-slate { background-color: #0F172A; }
-.bg-primary-teal { background-color: #0D9488; }
-.bg-emerald-accent { background-color: #059669; }
-.bg-bright-orange { background-color: #F97316; }
-.bg-light-orange { background-color: #FFF7ED; }
-.bg-off-white { background-color: #F8FAFC; }
+/* Custom Theme Utility Classes - Official Brand Palette Only */
+.bg-deep-purple { background-color: #3B176B; }
+.bg-primary-purple { background-color: #5B2AA8; }
+.bg-bright-orange { background-color: #FF6B1A; }
+.bg-light-orange { background-color: #FFF1E8; }
+.bg-off-white { background-color: #F8F7FB; }
 
-.text-deep-slate { color: #0F172A; }
-.text-primary-teal { color: #0D9488; }
-.text-emerald-accent { color: #059669; }
-.text-bright-orange { color: #F97316; }
-.text-dark-text { color: #0F172A; }
+.text-deep-purple { color: #3B176B; }
+.text-primary-purple { color: #5B2AA8; }
+.text-bright-orange { color: #FF6B1A; }
+.text-dark-text { color: #201A2B; }
 
-.border-primary-teal { border-color: #0D9488; }
-.border-bright-orange { border-color: #F97316; }
-.border-light-orange { border-color: #FFF7ED; }
+.border-deep-purple { border-color: #3B176B; }
+.border-primary-purple { border-color: #5B2AA8; }
+.border-bright-orange { border-color: #FF6B1A; }
+.border-light-orange { border-color: #FFF1E8; }
+
+/* Backward Compatibility Fallback mappings */
+.bg-deep-slate { background-color: #3B176B; }
+.bg-primary-teal { background-color: #5B2AA8; }
+.bg-emerald-accent { background-color: #FF6B1A; }
+
+.text-deep-slate { color: #201A2B; }
+.text-primary-teal { color: #5B2AA8; }
+.text-emerald-accent { color: #FF6B1A; }
+
+.border-primary-teal { border-color: #5B2AA8; }
+
 

@@ -27,14 +27,14 @@ export const SidebarControls: React.FC<SidebarControlsProps> = ({
         </label>
         {lessonPackage ? (
           <div>
-            <h2 className="text-base font-bold text-teal-950 leading-tight mb-1 line-clamp-2">
+            <h2 className="text-base font-bold text-deep-purple leading-tight mb-1 line-clamp-2">
               {lessonPackage.topic}
             </h2>
-            <p className="text-xs text-teal-700 font-medium">
+            <p className="text-xs text-primary-purple font-medium">
               {lessonPackage.subject} | <span className="font-bold">{lessonPackage.grade}</span>
             </p>
             <div className="mt-2 text-[11px] text-gray-500 flex items-center gap-1.5">
-              <span className="inline-block w-2 h-2 rounded-full bg-teal-500" />
+              <span className="inline-block w-2 h-2 rounded-full bg-bright-orange" />
               <span>Duration: {lessonPackage.durationMinutes} Mins</span>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const SidebarControls: React.FC<SidebarControlsProps> = ({
             <Languages className="w-3 h-3" />
             <span>Language Output</span>
           </label>
-          <span className="text-[9px] bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded font-bold">
+          <span className="text-[9px] bg-purple-100 text-primary-purple px-1.5 py-0.5 rounded font-bold">
             Multilingual
           </span>
         </div>
@@ -66,8 +66,8 @@ export const SidebarControls: React.FC<SidebarControlsProps> = ({
                 onClick={() => onSelectLanguage(lang.code)}
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-between cursor-pointer ${
                   isSelected
-                    ? 'bg-teal-700 text-white shadow-xs border border-teal-800'
-                    : 'bg-white border border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
+                    ? 'bg-primary-purple text-white shadow-xs border border-purple-800'
+                    : 'bg-white border border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50'
                 }`}
               >
                 <span>{lang.label}</span>
@@ -79,22 +79,22 @@ export const SidebarControls: React.FC<SidebarControlsProps> = ({
       </div>
 
       {/* Approval Status Card */}
-      <div className="bg-teal-900 text-white p-4 rounded-2xl border border-teal-800 space-y-2">
+      <div className="bg-[#3B176B] text-white p-4 rounded-2xl border border-purple-800 space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-[10px] uppercase tracking-wider text-orange-300 font-black">
             Approval Lock
           </span>
-          <span className="text-xs font-bold text-teal-200">
+          <span className="text-xs font-bold text-purple-200">
             {approvedCount}/{totalSections}
           </span>
         </div>
-        <div className="w-full bg-teal-950 h-2 rounded-full overflow-hidden">
+        <div className="w-full bg-purple-950 h-2 rounded-full overflow-hidden border border-purple-800">
           <div
-            className="bg-orange-400 h-full transition-all duration-300"
+            className="bg-bright-orange h-full transition-all duration-300"
             style={{ width: `${totalSections > 0 ? (approvedCount / totalSections) * 100 : 0}%` }}
           />
         </div>
-        <p className="text-[11px] text-teal-200 leading-snug">
+        <p className="text-[11px] text-purple-200 leading-snug">
           {approvedCount === totalSections && totalSections > 0
             ? '✅ All sections approved! Export unlocked.'
             : '🔒 Review and approve all sections before exporting final materials.'}

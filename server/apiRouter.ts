@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import multer from 'multer';
 import { GoogleGenAI } from '@google/genai';
+import { extractTextFromBuffer } from './documentExtractor';
 import { repository, UploadRecord, VideoJob } from './repository';
 import {
   CreateSessionSchema,
@@ -97,7 +98,7 @@ apiRouter.post('/sessions', validateBody(CreateSessionSchema), (req: Request, re
 // 2. UPLOADS (PDF, DOCX, TXT, PNG, JPG, JPEG up to 10MB)
 // -------------------------------------------------------------------
 apiRouter.post('/uploads', (req: Request, res: Response, next) => {
-  upload.single('file')(req, res, (err: any) => {
+  upload.single('file')(req, res, async (err: any) => {
     if (err) {
       if (err.code === 'LIMIT_FILE_SIZE') {
         return res.status(400).json({
@@ -134,6 +135,22 @@ apiRouter.post('/uploads', (req: Request, res: Response, next) => {
     const sanitized = sanitizeFilename(file.originalname);
     const isImage = file.mimetype.startsWith('image/') || /\.(png|jpg|jpeg)$/i.test(file.originalname);
 
+    let extractedText = '';
+    try {
+      extractedText = await extractTextFromBuffer(file);
+    } catch (e: any) {
+      console.warn('Text extraction warning:', e?.message || e);
+    }
+
+    let summaryText = '';
+    if (extractedText.length > 0) {
+      summaryText = `Parsed ${file.originalname} (${extractedText.length.toLocaleString()} characters extracted) — Ready for NERDC alignment.`;
+    } else if (isImage) {
+      summaryText = `Image file ${file.originalname} uploaded (${(file.size / 1024).toFixed(1)} KB) — Ready for NERDC alignment.`;
+    } else {
+      summaryText = `Uploaded ${file.originalname} (${(file.size / 1024).toFixed(1)} KB) — Ready for NERDC alignment.`;
+    }
+
     const uploadRecord: UploadRecord = {
       id: `upl-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
       originalName: file.originalname,
@@ -145,8 +162,8 @@ apiRouter.post('/uploads', (req: Request, res: Response, next) => {
       piiMessage: isImage
         ? '⚠️ Photo upload detected. Please ensure no pupil face or personally identifiable information is included without parental consent.'
         : undefined,
-      extractedSummary: `Parsed ${file.originalname} (${(file.size / 1024).toFixed(1)} KB) — Ready for NERDC alignment.`,
-      rawText: file.buffer ? file.buffer.toString('utf-8').slice(0, 3000) : '',
+      extractedSummary: summaryText,
+      rawText: extractedText,
     };
 
     repository.saveUpload(uploadRecord);
@@ -160,6 +177,7 @@ apiRouter.post('/uploads', (req: Request, res: Response, next) => {
       piiMessage: uploadRecord.piiMessage,
       extractedSummary: uploadRecord.extractedSummary,
       uploadedAt: uploadRecord.uploadedAt,
+      rawText: uploadRecord.rawText,
     });
   });
 });

@@ -21,6 +21,7 @@ export interface UploadResponse {
   piiMessage?: string;
   extractedSummary: string;
   uploadedAt: string;
+  rawText?: string;
 }
 
 export interface VideoResponse {

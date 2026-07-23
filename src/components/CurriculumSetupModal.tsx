@@ -53,8 +53,8 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-teal-950/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl border-2 border-orange-200 max-w-2xl w-full p-6 md:p-8 shadow-2xl relative my-8">
+    <div className="fixed inset-0 z-50 bg-[#201A2B]/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-white rounded-3xl border-2 border-primary-purple max-w-2xl w-full p-6 md:p-8 shadow-2xl relative my-8">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-100 p-2 rounded-full cursor-pointer"
@@ -63,7 +63,7 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-orange-400 text-teal-950 rounded-2xl flex items-center justify-center font-black overflow-hidden shrink-0 shadow-sm">
+          <div className="w-12 h-12 bg-bright-orange text-white rounded-2xl flex items-center justify-center font-black overflow-hidden shrink-0 shadow-sm">
             <img
               src="/src/assets/images/teachmate_logo_1784714143045.jpg"
               alt="TeachMate AI Logo"
@@ -72,10 +72,10 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
                 (e.currentTarget as HTMLElement).style.display = 'none';
               }}
             />
-            <span className="text-teal-950 font-black text-xl">TM</span>
+            <span className="text-white font-black text-xl">TM</span>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-teal-950">TeachMate AI — Create New Lesson</h2>
+            <h2 className="text-xl font-bold text-deep-purple">TeachMate AI — Create New Lesson</h2>
             <p className="text-xs text-gray-500">
               Select Grade & Subject, confirm NERDC curriculum evidence, and run the specialist agent pipeline.
             </p>
@@ -95,7 +95,7 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
                 onClick={() => handleSelectPreset(preset)}
                 className={`p-3 rounded-xl border text-left transition-all text-xs flex items-start gap-2 cursor-pointer ${
                   topic === preset.topic
-                    ? 'border-teal-500 bg-teal-50 text-teal-900 ring-2 ring-teal-500/20'
+                    ? 'border-primary-purple bg-purple-50 text-purple-900 ring-2 ring-primary-purple/20'
                     : 'border-orange-100 bg-orange-50/50 hover:bg-orange-50 text-gray-700'
                 }`}
               >
@@ -114,11 +114,11 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-bold text-teal-900 block mb-1">Grade Level</label>
+              <label className="text-xs font-bold text-deep-purple block mb-1">Grade Level</label>
               <select
                 value={selectedGrade}
                 onChange={(e) => setSelectedGrade(e.target.value as GradeLevel)}
-                className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-3 py-2 text-sm font-semibold text-teal-950 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-3 py-2 text-sm font-semibold text-deep-purple focus:outline-none focus:ring-2 focus:ring-primary-purple"
               >
                 {GRADES.map((g) => (
                   <option key={g} value={g}>
@@ -129,11 +129,11 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
             </div>
 
             <div>
-              <label className="text-xs font-bold text-teal-900 block mb-1">Subject</label>
+              <label className="text-xs font-bold text-deep-purple block mb-1">Subject</label>
               <select
                 value={selectedSubject}
                 onChange={(e) => setSelectedSubject(e.target.value as SubjectName)}
-                className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-3 py-2 text-sm font-semibold text-teal-950 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-3 py-2 text-sm font-semibold text-deep-purple focus:outline-none focus:ring-2 focus:ring-primary-purple"
               >
                 {SUBJECTS.map((s) => (
                   <option key={s} value={s}>
@@ -145,19 +145,19 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
           </div>
 
           <div>
-            <label className="text-xs font-bold text-teal-900 block mb-1">Lesson Topic</label>
+            <label className="text-xs font-bold text-deep-purple block mb-1">Lesson Topic</label>
             <input
               type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g. Parts of a Plant and Photosynthesis"
               required
-              className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-4 py-2.5 text-sm font-bold text-teal-950 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full bg-orange-50/50 border border-orange-200 rounded-xl px-4 py-2.5 text-sm font-bold text-deep-purple focus:outline-none focus:ring-2 focus:ring-primary-purple"
             />
           </div>
 
           <div>
-            <label className="text-xs font-bold text-teal-900 block mb-1">
+            <label className="text-xs font-bold text-deep-purple block mb-1">
               Curriculum Evidence / Textbook Excerpt
             </label>
             <textarea
@@ -165,7 +165,7 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
               value={evidenceText}
               onChange={(e) => setEvidenceText(e.target.value)}
               placeholder="Paste textbook paragraph or NERDC scheme notes here..."
-              className="w-full bg-orange-50/50 border border-orange-200 rounded-xl p-3 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full bg-orange-50/50 border border-orange-200 rounded-xl p-3 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-purple"
             />
           </div>
 
@@ -180,7 +180,7 @@ export const CurriculumSetupModal: React.FC<CurriculumSetupModalProps> = ({
             <button
               type="submit"
               disabled={isGenerating || !topic.trim()}
-              className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-black text-xs rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-6 py-2.5 bg-bright-orange hover:bg-orange-600 text-white font-black text-xs rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <Sparkles className="w-4 h-4" />
               <span>{isGenerating ? 'Orchestrating 20 Agents...' : 'Run Agent Pipeline'}</span>

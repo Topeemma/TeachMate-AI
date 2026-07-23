@@ -94,8 +94,8 @@ export const SettingsPage: React.FC<Props> = ({ onSelectDemo }) => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-deep-purple">GEMINI_API_KEY</span>
               {healthData?.keys.geminiKeyConfigured ? (
-                <span className="flex items-center gap-1 text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
-                  <CheckCircle2 className="w-3 h-3" /> Active
+                <span className="flex items-center gap-1 text-[10px] bg-purple-100 text-primary-purple font-bold px-2 py-0.5 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-primary-purple" /> Active
                 </span>
               ) : (
                 <span className="flex items-center gap-1 text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">
@@ -113,11 +113,11 @@ export const SettingsPage: React.FC<Props> = ({ onSelectDemo }) => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-deep-purple">PIXVERSE_API_KEY</span>
               {healthData?.keys.pixverseKeyConfigured ? (
-                <span className="flex items-center gap-1 text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
-                  <CheckCircle2 className="w-3 h-3" /> Active
+                <span className="flex items-center gap-1 text-[10px] bg-purple-100 text-primary-purple font-bold px-2 py-0.5 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-primary-purple" /> Active
                 </span>
               ) : (
-                <span className="flex items-center gap-1 text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">
+                <span className="flex items-center gap-1 text-[10px] bg-orange-100 text-bright-orange font-bold px-2 py-0.5 rounded-full">
                   Canvas Fallback
                 </span>
               )}
@@ -163,7 +163,7 @@ export const SettingsPage: React.FC<Props> = ({ onSelectDemo }) => {
       {/* Safety & PII Zero Retention */}
       <section className="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 text-deep-purple font-bold text-base">
-          <ShieldCheck className="w-5 h-5 text-emerald-600" />
+          <ShieldCheck className="w-5 h-5 text-primary-purple" />
           <h3>Privacy, Safety & PII Zero-Retention Guarantee</h3>
         </div>
 

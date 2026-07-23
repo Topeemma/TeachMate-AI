@@ -40,14 +40,14 @@ export const ProgressStepper: React.FC<ProgressStepperProps> = ({
                 onClick={() => onSelectStage(step.id)}
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-colors cursor-pointer ${
                   isActive
-                    ? 'bg-orange-500 text-white shadow-xs'
+                    ? 'bg-bright-orange text-white shadow-xs'
                     : isPast
-                    ? 'text-teal-700 hover:bg-teal-50'
+                    ? 'text-primary-purple hover:bg-purple-50'
                     : 'text-gray-400 hover:text-gray-600'
                 }`}
               >
                 {isPast ? (
-                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary-purple" />
                 ) : (
                   <CircleDashed className="w-3.5 h-3.5 opacity-70" />
                 )}

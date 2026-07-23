@@ -64,17 +64,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   return (
     <div className="space-y-6 pb-12">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-teal-900 to-deep-purple text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-teal-800">
+      <div className="bg-gradient-to-r from-[#3B176B] to-[#201A2B] text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-900">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs font-bold mb-3 border border-orange-500/30">
               <Calendar className="w-3.5 h-3.5" />
               <span>Weekly Learner Document Tracker & Teacher Dashboard</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
               Teacher Curriculum & Progress Hub
             </h1>
-            <p className="text-sm text-teal-100 mt-1 max-w-2xl">
+            <p className="text-sm text-purple-100 mt-1 max-w-2xl">
               Monitor weekly document generation, student mastery exercises, quiz distribution, and Google Classroom synchronization across all 12 NERDC school weeks.
             </p>
           </div>
@@ -171,7 +171,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <div key={weekNum} className="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-gray-50/80 transition-all">
                 <div className="flex items-start gap-4">
                   <div className={`w-12 h-12 rounded-2xl flex flex-col items-center justify-center font-black text-xs shrink-0 shadow-sm ${
-                    completionCount === 10 ? 'bg-teal-700 text-white' : 'bg-gray-200 text-gray-700'
+                    completionCount === 10 ? 'bg-primary-purple text-white' : 'bg-gray-200 text-gray-700'
                   }`}>
                     <span>WK</span>
                     <span className="text-sm">{weekNum}</span>
@@ -183,8 +183,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                         {pkg ? pkg.topic : `Week ${weekNum} Curriculum Topic (Nerdc Aligned)`}
                       </h3>
                       {completionCount === 10 ? (
-                        <span className="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3" /> 10/10 Files Ready
+                        <span className="bg-purple-100 text-primary-purple text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-bright-orange" /> 10/10 Files Ready
                         </span>
                       ) : (
                         <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -207,7 +207,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                             title={doc.label}
                             className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold ${
                               isReady
-                                ? 'bg-teal-50 text-teal-800 border border-teal-200'
+                                ? 'bg-purple-50 text-purple-900 border border-purple-200'
                                 : 'bg-gray-100 text-gray-400 border border-gray-200'
                             }`}
                           >
@@ -224,7 +224,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   {pkg ? (
                     <button
                       onClick={() => onSelectPackage(pkg)}
-                      className="px-4 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
+                      className="px-4 py-2 bg-primary-purple hover:bg-purple-800 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>Open Review Studio</span>
                       <ChevronRight className="w-3.5 h-3.5" />

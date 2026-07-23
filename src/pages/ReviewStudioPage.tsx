@@ -148,18 +148,18 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
       <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs bg-teal-100 text-primary-teal px-2.5 py-0.5 rounded-full font-bold">
+            <span className="text-xs bg-purple-100 text-primary-purple px-2.5 py-0.5 rounded-full font-bold">
               {lessonPackage.subject}
             </span>
             <span className="text-xs bg-orange-100 text-bright-orange px-2.5 py-0.5 rounded-full font-bold">
               {lessonPackage.grade}
             </span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+            <span className="text-xs bg-purple-100 text-primary-purple px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5 text-bright-orange" />
               <span>{lessonPackage.citationVerification?.nerdcBenchmarkCode || 'NERDC-VERIFIED'}</span>
             </span>
           </div>
-          <h2 className="text-2xl font-bold text-deep-slate">{lessonPackage.topic}</h2>
+          <h2 className="text-2xl font-bold text-deep-purple">{lessonPackage.topic}</h2>
           <p className="text-xs text-gray-500 mt-0.5">
             Duration: {lessonPackage.durationMinutes} Mins • 10 Specialist Agents Verified
           </p>
@@ -177,9 +177,9 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
           {!isAllApproved && (
             <button
               onClick={() => setIsApproveAllModalOpen(true)}
-              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2.5 bg-primary-purple hover:bg-purple-800 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
             >
-              <CheckSquare className="w-4 h-4" />
+              <CheckSquare className="w-4 h-4 text-bright-orange" />
               <span>Approve All ({approvedCount}/13)</span>
             </button>
           )}
@@ -196,13 +196,13 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
 
       {/* Approval Status Progress Banner */}
       <div className={`p-4 rounded-2xl border-2 flex flex-col md:flex-row md:items-center justify-between gap-4 ${
-        isAllApproved ? 'bg-teal-50 border-teal-500 text-teal-950' : 'bg-amber-50 border-amber-300 text-amber-950'
+        isAllApproved ? 'bg-purple-50 border-primary-purple text-deep-purple' : 'bg-amber-50 border-amber-300 text-amber-950'
       }`}>
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-white shrink-0 ${
-            isAllApproved ? 'bg-teal-600' : 'bg-amber-500'
+            isAllApproved ? 'bg-primary-purple' : 'bg-amber-500'
           }`}>
-            {isAllApproved ? <ShieldCheck className="w-6 h-6" /> : <AlertCircle className="w-6 h-6" />}
+            {isAllApproved ? <ShieldCheck className="w-6 h-6 text-bright-orange" /> : <AlertCircle className="w-6 h-6" />}
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -220,15 +220,15 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
 
         <div className="flex items-center gap-3 shrink-0">
           <div className="w-32 bg-gray-200 h-2 rounded-full overflow-hidden hidden sm:block">
-            <div className="bg-emerald-500 h-full transition-all duration-300" style={{ width: `${progressPct}%` }} />
+            <div className="bg-bright-orange h-full transition-all duration-300" style={{ width: `${progressPct}%` }} />
           </div>
 
           <button
             onClick={handleApproveCurrentSection}
             disabled={isApproving}
-            className="px-3 py-1.5 bg-white border border-gray-300 hover:border-emerald-500 text-gray-800 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer disabled:opacity-50"
+            className="px-3 py-1.5 bg-white border border-gray-300 hover:border-primary-purple text-gray-800 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer disabled:opacity-50"
           >
-            {isApproving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />}
+            {isApproving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle className="w-3.5 h-3.5 text-primary-purple" />}
             <span>Approve Current Tab</span>
           </button>
         </div>
@@ -255,8 +255,8 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
                 isActive
-                  ? 'bg-primary-teal text-white shadow-md'
-                  : 'text-gray-600 hover:text-primary-teal hover:bg-teal-50/50'
+                  ? 'bg-primary-purple text-white shadow-md'
+                  : 'text-gray-600 hover:text-primary-purple hover:bg-purple-50/50'
               }`}
             >
               <Icon className={`w-4 h-4 ${isActive ? 'text-bright-orange' : 'text-gray-400'}`} />
@@ -271,7 +271,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 1: LESSON PLAN */}
         {activeTab === 'plan' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               5-Step Lesson Delivery Plan
             </h3>
 
@@ -279,8 +279,8 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
               <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Behavioral Objectives</h4>
               <ul className="space-y-2">
                 {lessonPackage.lessonPlan.behavioralObjectives.map((obj, i) => (
-                  <li key={i} className="text-xs text-gray-800 flex items-start gap-2 bg-teal-50/40 p-3 rounded-xl border border-teal-100/50">
-                    <span className="font-bold text-primary-teal">{i + 1}.</span>
+                  <li key={i} className="text-xs text-gray-800 flex items-start gap-2 bg-purple-50/40 p-3 rounded-xl border border-purple-100/50">
+                    <span className="font-bold text-primary-purple">{i + 1}.</span>
                     <span>{obj}</span>
                   </li>
                 ))}
@@ -316,11 +316,11 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 2: TEACHER NOTES */}
         {activeTab === 'teacher' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               Teacher Background & Pedagogical Notes
             </h3>
 
-            <div className="p-4 bg-teal-50/40 rounded-2xl border border-teal-100/50 text-xs text-gray-800 leading-relaxed">
+            <div className="p-4 bg-purple-50/40 rounded-2xl border border-purple-100/50 text-xs text-gray-800 leading-relaxed">
               <strong>Pedagogical Context:</strong> {lessonPackage.teacherNotes.pedagogicalBackground}
             </div>
 
@@ -351,10 +351,10 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {activeTab === 'learner' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-3">
-              <h3 className="text-lg font-bold text-deep-slate">Student Summary & Key Vocabulary</h3>
+              <h3 className="text-lg font-bold text-deep-purple">Student Summary & Key Vocabulary</h3>
 
               <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary-teal" />
+                <Globe className="w-4 h-4 text-primary-purple" />
                 <span className="text-xs font-bold text-gray-700">Translate Summary:</span>
                 {(['en', 'yo', 'ig', 'ha', 'pcm'] as LanguageCode[]).map((lang) => (
                   <button
@@ -362,7 +362,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
                     onClick={() => handleTranslate(lang)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase transition-all cursor-pointer ${
                       selectedLanguage === lang
-                        ? 'bg-primary-teal text-white'
+                        ? 'bg-primary-purple text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -373,7 +373,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
             </div>
 
             <div className="p-5 bg-off-white rounded-2xl border border-gray-200 text-xs text-gray-800 leading-relaxed space-y-2">
-              <h4 className="font-bold text-primary-teal uppercase text-[11px] tracking-wide">
+              <h4 className="font-bold text-primary-purple uppercase text-[11px] tracking-wide">
                 Summary ({selectedLanguage.toUpperCase()})
               </h4>
               <p>{isTranslating ? 'Translating summary...' : translatedText || lessonPackage.learnerNotes.summaryText}</p>
@@ -396,12 +396,12 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 4: CLASSROOM ACTIVITY */}
         {activeTab === 'activity' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               {lessonPackage.activity.activityName}
             </h3>
 
             <div className="flex gap-4 text-xs font-semibold text-gray-700">
-              <span className="px-3 py-1 bg-teal-100 text-primary-teal rounded-full">
+              <span className="px-3 py-1 bg-purple-100 text-primary-purple rounded-full">
                 Grouping: {lessonPackage.activity.grouping}
               </span>
             </div>
@@ -434,14 +434,14 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 5: QUIZ & KEY */}
         {activeTab === 'quiz' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               Pupil Quiz & Answer Key
             </h3>
 
             <div className="space-y-4">
               {lessonPackage.quiz.questions.map((q, i) => (
                 <div key={q.id || i} className="p-4 bg-gray-50 rounded-2xl border border-gray-200 space-y-2">
-                  <h4 className="text-xs font-bold text-deep-slate">
+                  <h4 className="text-xs font-bold text-deep-purple">
                     Q{i + 1}. {q.questionText}
                   </h4>
                   {q.options && (
@@ -453,7 +453,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
                       ))}
                     </div>
                   )}
-                  <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 mt-2">
+                  <div className="p-2.5 bg-purple-50 border border-purple-200 rounded-xl text-xs text-purple-950 mt-2">
                     <strong>Correct Answer:</strong> {q.correctAnswer} — <em>{q.explanation}</em>
                   </div>
                 </div>
@@ -465,11 +465,11 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 6: WORKSHEET & RUBRIC */}
         {activeTab === 'worksheet' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               {lessonPackage.worksheet.worksheetTitle}
             </h3>
 
-            <div className="p-4 bg-teal-50/40 rounded-2xl border border-teal-100/50 text-xs text-gray-800">
+            <div className="p-4 bg-purple-50/40 rounded-2xl border border-purple-100/50 text-xs text-gray-800">
               <strong>Instructions:</strong> {lessonPackage.worksheet.instructions}
             </div>
 
@@ -478,7 +478,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
               <ul className="space-y-2">
                 {lessonPackage.worksheet.exercises.map((ex, i) => (
                   <li key={i} className="p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-800 flex gap-2">
-                    <span className="font-bold text-primary-teal">{i + 1}.</span>
+                    <span className="font-bold text-primary-purple">{i + 1}.</span>
                     <span>{ex}</span>
                   </li>
                 ))}
@@ -490,29 +490,29 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 7: POWERPOINT SLIDE DECK */}
         {activeTab === 'slides' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3">
               PowerPoint Presentation Slides ({lessonPackage.slideDeck.slides.length})
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {lessonPackage.slideDeck.slides.map((slide) => (
-                <div key={slide.slideNumber} className="bg-gradient-to-br from-slate-900 to-teal-950 text-white rounded-2xl p-6 shadow-md border border-teal-800/60 space-y-4">
-                  <div className="flex items-center justify-between border-b border-teal-800/20 pb-2">
-                    <span className="text-[11px] font-bold text-orange-200">Slide #{slide.slideNumber}</span>
-                    <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-teal-200">
+                <div key={slide.slideNumber} className="bg-gradient-to-br from-[#3B176B] to-[#201A2B] text-white rounded-2xl p-6 shadow-md border border-purple-800/60 space-y-4">
+                  <div className="flex items-center justify-between border-b border-purple-800/40 pb-2">
+                    <span className="text-[11px] font-bold text-orange-300">Slide #{slide.slideNumber}</span>
+                    <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-purple-200">
                       Interactive Visual
                     </span>
                   </div>
 
                   <h4 className="text-base font-bold text-white">{slide.title}</h4>
 
-                  <ul className="space-y-1 text-xs text-teal-100 list-disc list-inside">
+                  <ul className="space-y-1 text-xs text-purple-100 list-disc list-inside">
                     {slide.bulletPoints.map((pt, i) => (
                       <li key={i}>{pt}</li>
                     ))}
                   </ul>
 
-                  <div className="p-3 bg-white/10 rounded-xl text-[11px] text-teal-200">
+                  <div className="p-3 bg-white/10 rounded-xl text-[11px] text-purple-200">
                     <strong>Speaker Notes:</strong> {slide.speakerNotes}
                   </div>
                 </div>
@@ -524,7 +524,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
         {/* TAB 8: 15s PIXVERSE VIDEO PLAYER */}
         {activeTab === 'video' && (
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-deep-slate border-b border-gray-100 pb-3 flex items-center justify-between">
+            <h3 className="text-lg font-bold text-deep-purple border-b border-gray-100 pb-3 flex items-center justify-between">
               <span>15-Second Pixverse Topic Animation</span>
               <span className="text-xs bg-orange-100 text-bright-orange px-2.5 py-0.5 rounded-full font-bold">
                 Timeboxed 15s Max
@@ -532,7 +532,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
             </h3>
 
             <div className="max-w-2xl mx-auto space-y-4">
-              <div className="aspect-video bg-gray-900 rounded-3xl overflow-hidden shadow-xl border-4 border-primary-teal flex items-center justify-center relative">
+              <div className="aspect-video bg-gray-900 rounded-3xl overflow-hidden shadow-xl border-4 border-primary-purple flex items-center justify-center relative">
                 <img
                   src={
                     lessonPackage.videoResources.pixverse15sVideoUrl ||
@@ -563,8 +563,8 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
 
       {/* Confirmation Modal for Approve All Sections */}
       {isApproveAllModalOpen && (
-        <div className="fixed inset-0 z-50 bg-teal-950/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl border-2 border-emerald-500 max-w-lg w-full p-6 md:p-8 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-[#201A2B]/70 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border-2 border-primary-purple max-w-lg w-full p-6 md:p-8 shadow-2xl relative">
             <button
               onClick={() => setIsApproveAllModalOpen(false)}
               className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-100 p-2 rounded-full cursor-pointer"
@@ -573,20 +573,20 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
             </button>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black shadow-md">
-                <ShieldCheck className="w-7 h-7" />
+              <div className="w-12 h-12 bg-primary-purple text-white rounded-2xl flex items-center justify-center text-2xl font-black shadow-md">
+                <ShieldCheck className="w-7 h-7 text-bright-orange" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-teal-950">Approve All 13 Sections?</h3>
+                <h3 className="text-lg font-bold text-deep-purple">Approve All 13 Sections?</h3>
                 <p className="text-xs text-gray-500">Teacher Quality Verification Gate</p>
               </div>
             </div>
 
-            <div className="space-y-3 bg-emerald-50 border border-emerald-200 p-4 rounded-2xl text-xs text-emerald-950 mb-6">
+            <div className="space-y-3 bg-purple-50 border border-purple-200 p-4 rounded-2xl text-xs text-purple-950 mb-6">
               <p className="font-semibold">
-                You are about to mark all 13 lesson components as <span className="uppercase text-emerald-700 font-bold">APPROVED</span>:
+                You are about to mark all 13 lesson components as <span className="uppercase text-primary-purple font-bold">APPROVED</span>:
               </p>
-              <ul className="grid grid-cols-2 gap-1.5 text-[11px] text-emerald-800 list-disc list-inside font-medium">
+              <ul className="grid grid-cols-2 gap-1.5 text-[11px] text-purple-900 list-disc list-inside font-medium">
                 <li>Lesson Delivery Plan</li>
                 <li>Teacher Notes & Misconceptions</li>
                 <li>Student Notes & Vocabulary</li>
@@ -600,7 +600,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
                 <li>NERDC Citations</li>
                 <li>Primary Safety Audit</li>
               </ul>
-              <p className="text-[11px] text-gray-600 italic border-t border-emerald-200 pt-2">
+              <p className="text-[11px] text-gray-600 italic border-t border-purple-200 pt-2">
                 This action recalculates server-side package approval and immediately unlocks PDF, Word, PPTX, and ZIP exports.
               </p>
             </div>
@@ -615,7 +615,7 @@ export const ReviewStudioPage: React.FC<Props> = ({ lessonPackage, onExportModal
               <button
                 onClick={handleConfirmApproveAll}
                 disabled={isApproving}
-                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                className="px-5 py-2.5 bg-bright-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 {isApproving ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckSquare className="w-4 h-4" />}
                 <span>Confirm & Approve All 13 Sections</span>

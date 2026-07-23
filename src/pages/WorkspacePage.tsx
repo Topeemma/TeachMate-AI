@@ -231,22 +231,24 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
       return;
     }
 
-    // Simulated Progress steps for other files
+    // Progress steps with dynamic feedback
     const timer = setInterval(() => {
       setUploadProgress((prev) => {
-        if (prev >= 85) {
-          clearInterval(timer);
-          return 85;
-        }
-        return prev + 25;
+        if (prev < 30) return prev + 10;
+        if (prev < 75) return prev + 5;
+        if (prev < 92) return prev + 2;
+        return 92;
       });
-    }, 150);
+    }, 180);
 
     try {
       const res = await ApiClient.uploadFile(file);
       clearInterval(timer);
       setUploadProgress(100);
       setUploadedFile(res);
+      if (res.rawText) {
+        setRawEvidenceText(res.rawText);
+      }
       showToast('File Processed', `Successfully extracted context from ${res.originalName}`, 'success');
       if (res.piiWarning) {
         showToast('Photo PII Alert', res.piiMessage || 'Ensure no pupil face/PII is included.', 'warning');
@@ -335,10 +337,10 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       {/* 10 Specialist Agents Progress Bar Indicator */}
       {isLoading && (
-        <div className="bg-teal-900 text-white rounded-3xl p-6 border-2 border-teal-700 shadow-xl space-y-4">
+        <div className="bg-gradient-to-r from-[#3B176B] to-[#201A2B] text-white rounded-3xl p-6 border-2 border-purple-800 shadow-xl space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center font-bold text-white animate-spin">
+              <div className="w-10 h-10 bg-bright-orange rounded-xl flex items-center justify-center font-bold text-white animate-spin">
                 ⚙️
               </div>
               <div>
@@ -348,7 +350,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                     Active
                   </span>
                 </h3>
-                <p className="text-xs text-teal-200">
+                <p className="text-xs text-purple-200">
                   Current Agent ({currentAgentIndex + 1}/10): <span className="font-bold text-orange-300">{specialistAgents[currentAgentIndex]}</span>
                 </p>
               </div>
@@ -356,28 +358,28 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
             <span className="text-sm font-extrabold text-orange-400">{agentProgress}%</span>
           </div>
 
-          <div className="w-full bg-teal-950 h-3 rounded-full overflow-hidden border border-teal-800">
+          <div className="w-full bg-purple-950 h-3 rounded-full overflow-hidden border border-purple-800">
             <div
               className="bg-gradient-to-r from-orange-400 to-orange-500 h-full transition-all duration-300 rounded-full"
               style={{ width: `${agentProgress}%` }}
             />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] text-teal-200 font-medium pt-1">
-            <div className="flex items-center gap-1.5 bg-teal-800/60 p-2 rounded-lg">
-              <CheckCircle2 className="w-3.5 h-3.5 text-green-400 shrink-0" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] text-purple-200 font-medium pt-1">
+            <div className="flex items-center gap-1.5 bg-purple-900/60 p-2 rounded-lg">
+              <CheckCircle2 className="w-3.5 h-3.5 text-bright-orange shrink-0" />
               <span>NERDC Standards Verified</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-teal-800/60 p-2 rounded-lg">
+            <div className="flex items-center gap-1.5 bg-purple-900/60 p-2 rounded-lg">
               <Sparkles className="w-3.5 h-3.5 text-orange-400 shrink-0" />
               <span>Pedagogy & Quiz Generation</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-teal-800/60 p-2 rounded-lg">
-              <FileCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+            <div className="flex items-center gap-1.5 bg-purple-900/60 p-2 rounded-lg">
+              <FileCheck className="w-3.5 h-3.5 text-purple-300 shrink-0" />
               <span>10 Native Documents Compiled</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-teal-800/60 p-2 rounded-lg">
-              <ShieldCheck className="w-3.5 h-3.5 text-green-300 shrink-0" />
+            <div className="flex items-center gap-1.5 bg-purple-900/60 p-2 rounded-lg">
+              <ShieldCheck className="w-3.5 h-3.5 text-bright-orange shrink-0" />
               <span>Zero-PII Privacy Enforced</span>
             </div>
           </div>
@@ -418,7 +420,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 setGrade('Primary 4');
                 onSelectDemo('Water Cycle');
               }}
-              className="px-3.5 py-2 bg-teal-50 hover:bg-teal-100 text-primary-teal font-bold text-xs rounded-xl border border-teal-200 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 bg-purple-50 hover:bg-purple-100 text-primary-purple font-bold text-xs rounded-xl border border-purple-200 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 text-bright-orange" />
               <span>Load Water Cycle Demo</span>
@@ -437,7 +439,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 id="subject-select"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value as SubjectName)}
-                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none cursor-pointer"
+                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none cursor-pointer"
               >
                 {subjects.map((s) => (
                   <option key={s} value={s}>
@@ -455,7 +457,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 id="grade-select"
                 value={grade}
                 onChange={(e) => setGrade(e.target.value as GradeLevel)}
-                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none cursor-pointer"
+                className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none cursor-pointer"
               >
                 {grades.map((g) => (
                   <option key={g} value={g}>
@@ -477,7 +479,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g. The Water Cycle and Rainfall in Nigeria"
-              className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none"
+              className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none"
               required
             />
             <div className="flex flex-wrap gap-2 mt-2">
@@ -533,7 +535,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
           <div className="space-y-3">
             <label className="block text-xs font-bold text-gray-700 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Upload className="w-3.5 h-3.5 text-primary-teal" />
+                <Upload className="w-3.5 h-3.5 text-primary-purple" />
                 <span>Upload Source Document / Textbook Excerpt (PDF, DOCX, TXT, PNG, JPG)</span>
               </span>
               <span className="text-[11px] text-gray-400 font-normal">Max 10MB</span>
@@ -548,8 +550,8 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 isDragging
                   ? 'border-bright-orange bg-orange-50/50 scale-[0.99]'
                   : uploadedFile
-                  ? 'border-teal-500 bg-teal-50/20'
-                  : 'border-gray-300 hover:border-primary-teal bg-gray-50/50 hover:bg-teal-50/20'
+                  ? 'border-primary-purple bg-purple-50/20'
+                  : 'border-gray-300 hover:border-primary-purple bg-gray-50/50 hover:bg-purple-50/20'
               }`}
             >
               <input
@@ -562,28 +564,36 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
 
               {isUploading ? (
                 <div className="space-y-3 max-w-xs mx-auto py-2">
-                  <div className="w-10 h-10 bg-teal-100 text-primary-teal rounded-xl flex items-center justify-center mx-auto animate-bounce">
+                  <div className="w-10 h-10 bg-purple-100 text-primary-purple rounded-xl flex items-center justify-center mx-auto animate-bounce">
                     <Upload className="w-5 h-5" />
                   </div>
-                  <p className="text-xs font-bold text-deep-slate">Processing Source Document...</p>
+                  <p className="text-xs font-bold text-deep-purple">
+                    {uploadProgress < 35
+                      ? 'Uploading Source Document...'
+                      : uploadProgress < 80
+                      ? 'Extracting Document Text...'
+                      : uploadProgress < 100
+                      ? 'Analyzing Document Context...'
+                      : 'Processing Complete!'}
+                  </p>
                   <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
                     <div
                       className="bg-bright-orange h-full transition-all duration-200"
                       style={{ width: `${uploadProgress}%` }}
                     />
                   </div>
-                  <p className="text-[10px] text-gray-500 font-mono">{uploadProgress}% uploaded</p>
+                  <p className="text-[10px] text-gray-500 font-mono">{uploadProgress}% processed</p>
                 </div>
               ) : uploadedFile ? (
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2 text-left">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 bg-purple-100 text-primary-purple rounded-xl flex items-center justify-center shrink-0">
                       <FileCheck className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-gray-900">{uploadedFile.originalName}</span>
-                        <span className="text-[10px] bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] bg-purple-100 text-primary-purple font-bold px-2 py-0.5 rounded-full">
                           Uploaded
                         </span>
                       </div>
@@ -610,7 +620,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                 </div>
               ) : (
                 <div className="space-y-2 py-2">
-                  <div className="w-12 h-12 bg-teal-100 text-primary-teal rounded-2xl flex items-center justify-center mx-auto">
+                  <div className="w-12 h-12 bg-purple-100 text-primary-purple rounded-2xl flex items-center justify-center mx-auto">
                     <Upload className="w-6 h-6" />
                   </div>
                   <div>
@@ -649,7 +659,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
               onChange={(e) => setRawEvidenceText(e.target.value)}
               rows={3}
               placeholder="Paste relevant NERDC scheme of work notes, textbook paragraphs, or syllabus guidelines..."
-              className="w-full p-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-normal text-dark-text focus:ring-2 focus:ring-primary-teal focus:outline-none"
+              className="w-full p-3.5 bg-gray-50 border border-gray-300 rounded-xl text-xs font-normal text-dark-text focus:ring-2 focus:ring-primary-purple focus:outline-none"
             />
           </div>
 
@@ -765,7 +775,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
                     onClick={() => toggleOutput(item.key)}
                     className={`p-2.5 rounded-xl border text-left text-xs font-medium flex items-center gap-2 transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-primary-teal bg-teal-50 text-deep-slate font-bold'
+                        ? 'border-primary-purple bg-purple-50 text-deep-purple font-bold'
                         : 'border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300'
                     }`}
                   >
@@ -803,7 +813,7 @@ export const WorkspacePage: React.FC<Props> = ({ onGenerate, onSelectDemo, isLoa
 
             <div className="flex items-center justify-between text-[10px] text-gray-400 mt-2 px-1">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3 h-3 text-teal-600" />
+                <ShieldCheck className="w-3 h-3 text-primary-purple" />
                 <span>Zero-PII Storage Guarantee</span>
               </span>
               <span className="font-mono">Idempotency Key: {idempotencyKey.slice(0, 16)}...</span>

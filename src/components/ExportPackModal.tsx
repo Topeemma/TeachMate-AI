@@ -143,8 +143,8 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-teal-950/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl border-2 border-teal-500 max-w-2xl w-full p-6 md:p-8 shadow-2xl relative my-8">
+    <div className="fixed inset-0 z-50 bg-[#201A2B]/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-white rounded-3xl border-2 border-primary-purple max-w-2xl w-full p-6 md:p-8 shadow-2xl relative my-8">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-100 p-2 rounded-full cursor-pointer"
@@ -153,11 +153,11 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl font-black shadow-md">
+          <div className="w-12 h-12 bg-bright-orange text-white rounded-2xl flex items-center justify-center text-2xl font-black shadow-md">
             🚀
           </div>
           <div>
-            <h2 className="text-xl font-bold text-teal-950">Export Multi-Format Lesson Package</h2>
+            <h2 className="text-xl font-bold text-deep-purple">Export Multi-Format Lesson Package</h2>
             <p className="text-xs text-gray-500">
               Download verified Teacher & Learner packages in PDF, Word (DOCX), Markdown, JSON, PPTX, or ZIP.
             </p>
@@ -175,9 +175,9 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
         {/* Lock Banner */}
         {isLocked ? (
           <div className="bg-orange-100 border-2 border-orange-300 p-4 rounded-2xl mb-6 text-orange-950 flex items-start gap-3">
-            <Lock className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
+            <Lock className="w-5 h-5 text-bright-orange shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-bold text-xs uppercase tracking-wider text-orange-700">
+              <h4 className="font-bold text-xs uppercase tracking-wider text-orange-800">
                 Exports Locked ({approvedCount}/{totalSections} Approved)
               </h4>
               <p className="text-xs mt-1 leading-relaxed">
@@ -186,13 +186,13 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
             </div>
           </div>
         ) : (
-          <div className="bg-teal-50 border-2 border-teal-500 p-4 rounded-2xl mb-6 text-teal-950 flex items-center gap-3">
-            <CheckCircle className="w-6 h-6 text-teal-600 shrink-0" />
+          <div className="bg-purple-50 border-2 border-primary-purple p-4 rounded-2xl mb-6 text-purple-950 flex items-center gap-3">
+            <CheckCircle className="w-6 h-6 text-bright-orange shrink-0" />
             <div>
-              <h4 className="font-bold text-xs uppercase tracking-wider text-teal-800">
+              <h4 className="font-bold text-xs uppercase tracking-wider text-deep-purple">
                 All {totalSections} Sections Approved!
               </h4>
-              <p className="text-xs text-teal-700">
+              <p className="text-xs text-purple-800">
                 Your lesson package is fully verified for classroom distribution.
               </p>
             </div>
@@ -204,34 +204,34 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
           <button
             onClick={() => handleExportFormat('zip')}
             disabled={isLocked || downloadingFormat === 'zip'}
-            className="py-3 px-4 bg-teal-800 hover:bg-teal-900 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed col-span-1 sm:col-span-2"
+            className="py-3 px-4 bg-primary-purple hover:bg-purple-800 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed col-span-1 sm:col-span-2"
           >
-            {downloadingFormat === 'zip' ? <Loader2 className="w-4 h-4 animate-spin text-orange-300" /> : <Archive className="w-4 h-4 text-orange-300" />}
+            {downloadingFormat === 'zip' ? <Loader2 className="w-4 h-4 animate-spin text-bright-orange" /> : <Archive className="w-4 h-4 text-bright-orange" />}
             <span>Download Complete Package ZIP (Teacher & Learner Bundles)</span>
           </button>
 
           <button
             onClick={onTriggerPrint}
             disabled={isLocked}
-            className="py-3 px-4 bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-bright-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <Printer className="w-4 h-4 text-orange-300" />
+            <Printer className="w-4 h-4" />
             <span>Printable PDF / Save as PDF</span>
           </button>
 
           <button
             onClick={() => handleExportFormat('docx')}
             disabled={isLocked || downloadingFormat === 'docx'}
-            className="py-3 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-primary-purple hover:bg-purple-800 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {downloadingFormat === 'docx' ? <Loader2 className="w-4 h-4 animate-spin text-orange-300" /> : <FileText className="w-4 h-4 text-orange-300" />}
+            {downloadingFormat === 'docx' ? <Loader2 className="w-4 h-4 animate-spin text-bright-orange" /> : <FileText className="w-4 h-4 text-bright-orange" />}
             <span>Download MS Word (.DOCX)</span>
           </button>
 
           <button
             onClick={() => handleExportFormat('markdown')}
             disabled={isLocked || downloadingFormat === 'markdown'}
-            className="py-3 px-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-[#3B176B] hover:bg-purple-950 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {downloadingFormat === 'markdown' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileCode className="w-4 h-4" />}
             <span>Download Markdown (.MD)</span>
@@ -240,7 +240,7 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
           <button
             onClick={() => handleExportFormat('pptx')}
             disabled={isLocked || downloadingFormat === 'pptx'}
-            className="py-3 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-bright-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {downloadingFormat === 'pptx' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Presentation className="w-4 h-4" />}
             <span>Download Slide Deck (.PPTX)</span>
@@ -249,40 +249,40 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
           <button
             onClick={() => handleExportFormat('json')}
             disabled={isLocked || downloadingFormat === 'json'}
-            className="py-3 px-4 bg-white border-2 border-gray-200 hover:border-teal-500 text-gray-800 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-white border-2 border-gray-200 hover:border-primary-purple text-gray-800 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {downloadingFormat === 'json' ? <Loader2 className="w-4 h-4 animate-spin text-teal-700" /> : <Download className="w-4 h-4 text-teal-700" />}
+            {downloadingFormat === 'json' ? <Loader2 className="w-4 h-4 animate-spin text-primary-purple" /> : <Download className="w-4 h-4 text-primary-purple" />}
             <span>Download Structured JSON</span>
           </button>
 
           <button
             onClick={handleCopyTextSummary}
             disabled={isLocked}
-            className="py-3 px-4 bg-white border-2 border-gray-200 hover:border-teal-500 text-gray-800 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-3 px-4 bg-white border-2 border-gray-200 hover:border-primary-purple text-gray-800 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <Copy className="w-4 h-4 text-teal-700" />
+            <Copy className="w-4 h-4 text-primary-purple" />
             <span>Copy Text Summary</span>
           </button>
         </div>
 
         {/* Google Classroom Integration Section */}
         <div className="mt-6 pt-6 border-t border-gray-200">
-          <div className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4">
+          <div className="bg-purple-50 border-2 border-purple-200 rounded-2xl p-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-xl flex items-center justify-center font-black text-sm">
+                <div className="w-8 h-8 bg-primary-purple text-white rounded-xl flex items-center justify-center font-black text-sm">
                   📚
                 </div>
                 <div>
-                  <h3 className="font-bold text-xs uppercase tracking-wider text-blue-950">Share to Google Classroom</h3>
-                  <p className="text-[11px] text-blue-700">Post directly as Coursework or Material to your connected classes</p>
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-deep-purple">Share to Google Classroom</h3>
+                  <p className="text-[11px] text-purple-800">Post directly as Coursework or Material to your connected classes</p>
                 </div>
               </div>
               {!gcToken ? (
                 <button
                   onClick={handleConnectGC}
                   disabled={isLoadingCourses}
-                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="px-3 py-1.5 bg-primary-purple hover:bg-purple-800 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                 >
                   {isLoadingCourses ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>Connect Classroom</span>}
                 </button>
@@ -308,9 +308,9 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
             )}
 
             {gcSuccess ? (
-              <div className="bg-emerald-100 border border-emerald-300 p-3 rounded-xl text-xs text-emerald-950 flex flex-col gap-2">
-                <div className="flex items-center gap-2 font-bold text-emerald-800">
-                  <CheckCircle className="w-4 h-4" />
+              <div className="bg-purple-100 border border-purple-300 p-3 rounded-xl text-xs text-purple-950 flex flex-col gap-2">
+                <div className="flex items-center gap-2 font-bold text-deep-purple">
+                  <CheckCircle className="w-4 h-4 text-bright-orange" />
                   <span>Successfully posted to Google Classroom!</span>
                 </div>
                 {gcSuccess.webViewLink && (
@@ -318,14 +318,14 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
                     href={gcSuccess.webViewLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-600 underline font-medium hover:text-blue-800 text-[11px]"
+                    className="text-primary-purple underline font-medium hover:text-purple-800 text-[11px]"
                   >
                     Open in Google Classroom ↗
                   </a>
                 )}
                 <button
                   onClick={() => setGcSuccess(null)}
-                  className="mt-1 self-start px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg text-[11px] font-semibold cursor-pointer"
+                  className="mt-1 self-start px-2.5 py-1 bg-white border border-purple-300 text-purple-800 rounded-lg text-[11px] font-semibold cursor-pointer"
                 >
                   Share to Another Class
                 </button>
@@ -333,11 +333,11 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
             ) : gcToken ? (
               <div className="space-y-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-blue-900 mb-1">Select Classroom Course:</label>
+                  <label className="block text-[11px] font-bold text-deep-purple mb-1">Select Classroom Course:</label>
                   <select
                     value={selectedCourseId}
                     onChange={(e) => setSelectedCourseId(e.target.value)}
-                    className="w-full bg-white border border-blue-300 rounded-xl px-3 py-2 text-xs font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-white border border-purple-300 rounded-xl px-3 py-2 text-xs font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-purple"
                   >
                     {courses.length === 0 ? (
                       <option value="">No courses found. Click to load...</option>
@@ -352,14 +352,14 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <label className="text-[11px] font-bold text-blue-900">Post Type:</label>
+                  <label className="text-[11px] font-bold text-deep-purple">Post Type:</label>
                   <label className="flex items-center gap-1.5 text-xs font-medium cursor-pointer">
                     <input
                       type="radio"
                       name="workType"
                       checked={workType === 'ASSIGNMENT'}
                       onChange={() => setWorkType('ASSIGNMENT')}
-                      className="text-blue-600"
+                      className="text-primary-purple"
                     />
                     <span>Assignment (Graded 100pts)</span>
                   </label>
@@ -369,7 +369,7 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
                       name="workType"
                       checked={workType === 'MATERIAL'}
                       onChange={() => setWorkType('MATERIAL')}
-                      className="text-blue-600"
+                      className="text-primary-purple"
                     />
                     <span>Course Material</span>
                   </label>
@@ -379,7 +379,7 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
                   <button
                     onClick={handleShareToClassroom}
                     disabled={isLocked || isSharingGC || isUploadingAll || !selectedCourseId}
-                    className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full py-2.5 bg-primary-purple hover:bg-purple-800 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {isSharingGC ? <Loader2 className="w-4 h-4 animate-spin" /> : <span>Share Single Lesson Post</span>}
                   </button>
@@ -387,14 +387,14 @@ ${lessonPackage.quiz.questions.map((q) => `${q.id}. ${q.questionText}\nAnswer: $
                   <button
                     onClick={handleUploadAllMaterials}
                     disabled={isLocked || isSharingGC || isUploadingAll || !selectedCourseId}
-                    className="w-full py-2.5 bg-blue-800 hover:bg-blue-900 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full py-2.5 bg-bright-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
-                    {isUploadingAll ? <Loader2 className="w-4 h-4 animate-spin text-orange-300" /> : <span className="text-orange-200 font-black">🚀 Upload All 7 Lesson Materials At Once</span>}
+                    {isUploadingAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <span className="text-white font-black">🚀 Upload All 7 Lesson Materials At Once</span>}
                   </button>
                 </div>
               </div>
             ) : (
-              <p className="text-[11px] text-blue-800 italic">
+              <p className="text-[11px] text-purple-800 italic">
                 Connect your Google account to grant permission for posting assignments and course materials to your Google Classroom courses.
               </p>
             )}
